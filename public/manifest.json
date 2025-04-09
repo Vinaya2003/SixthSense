@@ -4,18 +4,17 @@
     "description": "Accessibility Application for Visually Impaired",
     "start_url": "/",
     "display": "standalone",
+    "orientation": "portrait",
     "background_color": "#ffffff",
     "theme_color": "#007bff",
+    "scope": "/",
     "icons": [
         {
-            "src": "images/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "images/icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
+            "src": "images/icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
         }
-    ]
+    ],
+    "prefer_related_applications": false
 } 
