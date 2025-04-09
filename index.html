@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Voice - Accessibility App</title>
+    <link rel="stylesheet" href="public/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen active">
+            <div class="container">
+                <h1>Vision Voice</h1>
+                <p>Accessibility Application for Visually Impaired</p>
+                
+                <div class="login-form">
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter username" autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password" autocomplete="current-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-type">Login as:</label>
+                        <select id="user-type">
+                            <option value="client">Client</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <button id="login-btn" class="btn">Login</button>
+                    <p id="login-error" class="error-message"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Client App Interface -->
+        <div id="main-screen" class="screen">
+            <header>
+                <button id="back-btn" aria-label="Go back">Back</button>
+                <h2 id="screen-title">Vision Voice</h2>
+                <span id="user-info"></span>
+            </header>
+            
+            <div id="gesture-container" class="gesture-container">
+                <div class="gesture-card">
+                    <div class="gesture-icon">
+                        <img src="public/images/swipe-vertical.svg" alt="Swipe up icon">
+                    </div>
+                    <h3>Swipe Up</h3>
+                    <p>Send Message</p>
+                </div>
+                
+                <div class="gesture-card">
+                    <div class="gesture-icon">
+                        <img src="public/images/swipe-vertical.svg" alt="Swipe down icon" style="transform: rotate(180deg);">
+                    </div>
+                    <h3>Swipe Down</h3>
+                    <p>Read Last Message</p>
+                </div>
+                
+                <div class="gesture-card">
+                    <div class="gesture-icon">
+                        <img src="public/images/hand.svg" alt="Hold gesture icon">
+                    </div>
+                    <h3>Hold</h3>
+                    <p>Activate SOS</p>
+                </div>
+            </div>
+            
+            <div id="message-screen" class="screen">
+                <div id="messages-container" class="messages-container">
+                    <!-- Messages will be added here -->
+                </div>
+                <div class="message-input">
+                    <textarea id="message-text" placeholder="Tap anywhere to record your message"></textarea>
+                    <button id="voice-input-btn" aria-label="Voice input">🎤</button>
+                    <button id="send-btn" aria-label="Send message">📤</button>
+                </div>
+            </div>
+            
+            <div id="sos-screen" class="screen">
+                <h2>SOS Activated</h2>
+                <p>Emergency contacts are being notified.</p>
+                <button id="cancel-sos-btn" class="btn">Cancel SOS</button>
+            </div>
+        </div>
+        
+        <!-- Admin Dashboard -->
+        <div id="admin-screen" class="screen">
+            <header>
+                <button id="back-btn" class="admin-back-btn" aria-label="Logout">Logout</button>
+                <h2>Admin Dashboard</h2>
+                <span id="user-info"></span>
+            </header>
+            
+            <div class="admin-container">
+                <h3>Conversation with Client</h3>
+                <div id="admin-messages-container" class="messages-container admin-messages">
+                    <!-- Client messages will be displayed here -->
+                    <div class="no-messages">No messages yet</div>
+                </div>
+                <div class="message-input admin-input">
+                    <textarea id="admin-message-text" placeholder="Type your reply to client"></textarea>
+                    <button id="admin-send-btn" class="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assistive overlay for visually impaired users -->
+    <div id="assistive-overlay" class="assistive-overlay">
+        <div id="assistive-feedback" class="assistive-feedback"></div>
+    </div>
+    
+    <!-- Audio elements for notifications -->
+    <audio id="message-notification" preload="auto">
+        <source src="public/sounds/notification.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Scripts -->
+    <script src="public/js/script.js"></script>
+    <script src="public/js/gestures.js"></script>
+    <script src="public/js/speechSynthesis.js"></script>
+    <script src="public/js/speechRecognition.js"></script>
+</body>
+</html> 

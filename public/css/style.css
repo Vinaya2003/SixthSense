@@ -1,0 +1,444 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --warning-color: #e74c3c;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+    --text-color: #333;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--light-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.screen {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    padding: 1rem;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Login Screen */
+.container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.login-form {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.error-message {
+    color: var(--warning-color);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Main Screen */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+#back-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Gesture Container */
+.gesture-container {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.gesture-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+.gesture-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gesture-icon img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Message Screen */
+.messages-container {
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border: 2px solid var(--primary-color);
+}
+
+.message {
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    max-width: 80%;
+}
+
+.message.sent {
+    background-color: var(--primary-color);
+    color: white;
+    margin-left: auto;
+}
+
+.message.received {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.message-input {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.message-input textarea {
+    flex: 1;
+    resize: none;
+    height: 60px;
+}
+
+.message-input button {
+    width: 60px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* SOS Screen */
+#sos-screen {
+    text-align: center;
+    background-color: var(--warning-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#sos-screen .btn {
+    background-color: white;
+    color: var(--warning-color);
+    margin-top: 2rem;
+    max-width: 200px;
+}
+
+/* Assistive overlay for screen reader feedback */
+.assistive-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.assistive-overlay.active {
+    display: flex;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .gesture-container {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* Message area highlighting */
+.message-input textarea.highlight {
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+/* Larger target area for taps */
+.message-input textarea {
+    min-height: 80px;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+/* Make buttons larger and more tappable */
+.message-input button {
+    width: 70px;
+    height: 70px;
+    font-size: 1.5rem;
+}
+
+/* Increase sensitivity area */
+button, 
+.gesture-card,
+input, 
+select {
+    cursor: pointer;
+    min-height: 44px; /* Minimum Apple recommendation for tap targets */
+}
+
+/* Recording state styles */
+.message-input textarea.recording {
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0 0 10px var(--secondary-color);
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+.message-input button.recording {
+    background-color: var(--warning-color);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Make the entire screen tappable when in message mode */
+#main-screen, #message-screen {
+    cursor: pointer;
+}
+
+/* Larger text for better visibility */
+.message-content {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+/* Message styling */
+.no-messages {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+    font-style: italic;
+}
+
+/* Admin Dashboard styles */
+.admin-container {
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.admin-messages {
+    height: calc(100vh - 240px);
+    border: 1px solid #ddd;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.admin-input {
+    margin-top: 1rem;
+}
+
+.admin-input textarea {
+    height: 80px;
+    width: calc(100% - 100px);
+}
+
+.admin-input button {
+    height: 80px;
+    background-color: var(--dark-color);
+    width: 80px;
+}
+
+/* Message styles for client/admin classes */
+.message.client {
+    background-color: var(--primary-color);
+    color: white;
+    margin-left: auto;
+    margin-right: 10px;
+    max-width: 80%;
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.message.admin {
+    background-color: var(--dark-color);
+    color: white;
+    margin-right: auto;
+    margin-left: 10px;
+    max-width: 80%;
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Message content and time styling */
+.message-content {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.message-time {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* Remove gesture classes that aren't needed for the blind user */
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 0.5rem;
+    }
+    
+    .gesture-container {
+        padding: 1rem;
+    }
+}
+
+/* Make client UI more accessible */
+#message-text {
+    font-size: 1.2rem;
+    min-height: 100px;
+}
+
+/* Ensure the back button is different for admin and client */
+#admin-screen #back-btn {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+/* Message notification indicators */
+.new-message-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+    z-index: 100;
+    font-weight: bold;
+}
+
+.message.new {
+    animation: highlight-message 2s ease-in-out;
+}
+
+@keyframes highlight-message {
+    0% { background-color: var(--secondary-color); }
+    100% { background-color: inherit; }
+}
+
+/* Fix for message display in admin panel */
+.admin-messages .message {
+    clear: both;
+    overflow: hidden;
+} 
